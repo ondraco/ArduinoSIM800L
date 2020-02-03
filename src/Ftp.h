@@ -36,9 +36,8 @@ class FTP : public SIM800
 
 public:
   FTP(unsigned int baudRate,
-      unsigned int rxPin,
-      unsigned int txPin,
-      unsigned int rstPin) : SIM800(baudRate, rxPin, txPin, rstPin){};
+      HardwareSerial &serial,
+      unsigned int rstPin) : SIM800(baudRate, serial, rstPin){};
 
   Result putBegin(const char *apn,
                   const char *fileName,

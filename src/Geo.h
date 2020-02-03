@@ -35,9 +35,8 @@ class Geo : public SIM800
 
 public:
   Geo(unsigned int baudRate,
-      unsigned int rxPin,
-      unsigned int txPin,
-      unsigned int rstPin) : SIM800(baudRate, rxPin, txPin, rstPin){};
+      HardwareSerial &serial,
+      unsigned int rstPin) : SIM800(baudRate, serial, rstPin){};
   void readGpsLocation(char *gps);
 };
 

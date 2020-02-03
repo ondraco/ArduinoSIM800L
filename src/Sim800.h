@@ -52,12 +52,12 @@ public:
      *  @param rxPin uart receive pin to communicate with SIM800
      *  @param txPin uart transmit pin to communicate with SIM800
      */
-    SIM800(unsigned int baudRate,
-           unsigned int rxPin,
-           unsigned int txPin,
-           unsigned int rstPin) : serialSIM800(txPin, rxPin)
+    SIM800(
+        unsigned int baudRate,
+        HardwareSerial &serial,
+        unsigned int rstPin) : serialSIM800(serial)
     {
-        serialSIM800.begin(baudRate);
+        serial.begin(baudRate);
         resetPin = rstPin;
     };
 
@@ -138,7 +138,7 @@ public:
     void wakeUp();
 
 protected:
-    SoftwareSerial serialSIM800;
+    HardwareSerial& serialSIM800;
     unsigned int resetPin;
 };
 
